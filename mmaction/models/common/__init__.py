@@ -5,9 +5,10 @@ from .sub_batchnorm3d import SubBatchNorm3D
 from .tam import TAM
 from .transformer import (DividedSpatialAttentionWithNorm,
                           DividedTemporalAttentionWithNorm, FFNWithNorm)
+from .lamme import LAM,ME,LAMME
 
 __all__ = [
     'Conv2plus1d', 'TAM', 'DividedSpatialAttentionWithNorm',
     'DividedTemporalAttentionWithNorm', 'FFNWithNorm', 'SubBatchNorm3D',
-    'ConvAudio'
+    'ConvAudio','LAMME','LAM','ME'
 ]

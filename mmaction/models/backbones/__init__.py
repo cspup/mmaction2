@@ -3,6 +3,14 @@ from .aagcn import AAGCN
 from .c2d import C2D
 from .c3d import C3D
 from .mobilenet_v2 import MobileNetV2
+from .mobilenet_v3 import MobileNetV3
+from .mobilenet_v2_lmnet import MobileNetV2LMNet
+from .mobilenet_v3_lamme import MobileNetV3LAMME
+from .resnet_lmnet import ResNetLMNet
+from .shufflenetv2 import ShuffleNetV2
+from .shufflenet_v2_lamme import ShuffleNetV2LAMME
+from .efficientnetv2 import EfficientNetV2
+from .efficientnet_v2_lamme import EfficientNetV2LAMME
 from .mobilenet_v2_tsm import MobileNetV2TSM
 from .mvit import MViT
 from .resnet import ResNet
@@ -31,11 +39,14 @@ __all__ = [
     'ResNet3dLayer', 'ResNet3dSlowFast', 'ResNet3dSlowOnly', 'ResNetAudio',
     'ResNetTIN', 'ResNetTSM', 'STGCN', 'SwinTransformer3D', 'TANet',
     'TimeSformer', 'UniFormer', 'UniFormerV2', 'VisionTransformer', 'X3D',
-    'RGBPoseConv3D'
+    'RGBPoseConv3D', 'LMnet', 'MobileNetV2LMNet', 'ResNetLMNet', 'ShuffleNetV2',
+    'EfficientNetV2', 'MobileNetV3', 'MobileNetV3LAMME','ShuffleNetV2LAMME',
+    'EfficientNetV2LAMME'
 ]
 
 try:
     from .mobileone_tsm import MobileOneTSM  # noqa: F401
+
     __all__.append('MobileOneTSM')
 
 except (ImportError, ModuleNotFoundError):

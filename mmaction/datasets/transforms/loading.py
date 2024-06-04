@@ -214,6 +214,7 @@ class SampleFrames(BaseTransform):
                  test_mode: bool = False,
                  keep_tail_frames: bool = False,
                  target_fps: Optional[int] = None,
+                 num_sample: int = 1,
                  **kwargs) -> None:
 
         self.clip_len = clip_len
@@ -225,6 +226,7 @@ class SampleFrames(BaseTransform):
         self.test_mode = test_mode
         self.keep_tail_frames = keep_tail_frames
         self.target_fps = target_fps
+        self.num_sample = num_sample
         assert self.out_of_bound_opt in ['loop', 'repeat_last']
 
     def _get_train_clips(self, num_frames: int,
@@ -326,7 +328,11 @@ class SampleFrames(BaseTransform):
             clip_offsets = self._get_test_clips(num_frames, ori_clip_len)
         else:
             clip_offsets = self._get_train_clips(num_frames, ori_clip_len)
-
+            # 多次取样，主要用于测试多次随机取样
+            if self.num_sample>1:
+                for i in range(self.num_sample):
+                    new_clip_offsets = self._get_train_clips(num_frames, ori_clip_len)
+                    clip_offsets = np.concatenate([clip_offsets, new_clip_offsets])
         return clip_offsets
 
     def _get_ori_clip_len(self, fps_scale_ratio: float) -> float:
